@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ant</title>
+		<script src="map.min.js"></script>
+		<script src="ant.js"></script>
+	</head>
+	<body onload="load()" onresize="load()" onkeypress="spchandler(event)">
+		<table>
+			<tr>
+				<td>
+					<canvas width="1000" height="1000" id="ac" style="border: solid 1px black"></canvas>
+				</td>
+				<td>
+					Box size: <input type="text" value="1" id="pxs" /><br />
+					Width: <input type="text" value="1" id="width" /><br />
+					Height: <input type="text" value="1" id="height" /><br />
+					<input type="submit" value="Update" onclick="uv()" />
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
