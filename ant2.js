@@ -10,7 +10,7 @@ function sat(n, obj){
 }
 function sta(a, obj){
 	for(i = 0; i < obj.width * obj.height * 4; i += 4){
-		obj.data[i+0] = obj.data[i+1] = obj.data[i+2] = (a[i / 4] == 1) ? 255 : 0;
+		obj.data[i+0] = obj.data[i+1] = obj.data[i+2] = a[i / 4] ? 255 : 0;
 		obj.data[i+3] = 255;
 	}
 	return obj;
@@ -33,7 +33,6 @@ var canvas;
 var ctx;
 var black, white;
 var tr1, tr2;
-var tr_a, tr_b, tr_c, tr_d;
 var bwArray = [];
 var bwId;
 var nos = 0;
@@ -41,13 +40,13 @@ function step(){
 //var id = ctx.createImageData(cp, cp);
 //var id = (w) ? white : black;
 var w = bwArray[ay][ax];
-//var id;
-var id = (w) ? black : white;
-//if((ax + ay) % 2 == 0){
-//id = (w) ?  tr1 : tr2;
-//}else{
-//id = (w) ?  tr2 : tr1;
-//}
+var id;
+//var id = (w) ? black : white;
+if((ax + ay) % 2 == 0){
+id = (w) ?  tr1 : tr2;
+}else{
+id = (w) ?  tr2 : tr1;
+}
 //id.data[0] = id.data[1] = id.data[2] =  (w) ? 0 : 255;
 //id = sat((w) ? 0 : 255, id);
 aa += (w) ? 1 : -1;
@@ -162,7 +161,7 @@ true, true, true, false,
 true, true, false, true], ctx.createImageData(cp, cp));
 tr2 = sta([true, true, false, true,true, true, true, false,false, true, true, true,true, false, true, true], ctx.createImageData(cp, cp));
 //tr2 = sta([], ctx.createImageData(cp, cp));
-/*tr_a = sta(
+tr_a = sta(
 [false, false, true, true,
 false, true, true, true, 
 true, true, true, false, 
@@ -179,13 +178,13 @@ tr_c = sta(
 tr_d = sta(
 [1,1,0,0,
 1,0,0,0,
-0,0,0,1,
+0,0,0,1
 0,0,1,1], ctx.createImageData(cp, cp));
-*/
+
 //bwId = sat(255, ctx.createImageData(cw * cp, ch * cp));
 ctx.fillStyle = "#FFF";
 ctx.fillRect(0, 0, cw * cp, ch * cp);
-/*for(i = 0; i < ch * cp; i += cp){
+for(i = 0; i < ch * cp; i += cp){
         for(j = 0; j < cw * cp; j += cp){
 		if((j / cp + i / cp) % 2 == 0){
                 ctx.putImageData(tr1, i, j);
@@ -193,7 +192,7 @@ ctx.fillRect(0, 0, cw * cp, ch * cp);
 		ctx.putImageData(tr2, i, j);
 		}
      }
-}*/
+}
 play();
 
 
